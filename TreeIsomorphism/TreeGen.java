@@ -147,19 +147,19 @@ public class TreeGen {
     public ArrayList<Node> nodeListByLevel(int level) {
         ArrayList<Node> nodesList = new ArrayList();
         if (level>getHeight()) {
-            System.out.println("No such level in the tree! " + level + " is greater than the height " + getHeight());
+            //System.out.println("No such level in the tree! " + level + " is greater than the height " + getHeight());
             return null;
         } else if (level < 0) {
-            System.out.println("Level can not be negative!");
+            //System.out.println("Level can not be negative!");
             return null;
         } else {
-            System.out.print("Level " + level + " has nodes: ");
+            //System.out.print("Level " + level + " has nodes: ");
             LinkedList<Integer> ll = levelNodeMap.get(level);
             for (int i : ll) {
-                System.out.print(i + " ");
+                //System.out.print(i + " ");
                 nodesList.add(treeNodes[i]);
             }
-            System.out.println();
+            //System.out.println();
             return nodesList;
         }
     }
@@ -168,38 +168,43 @@ public class TreeGen {
      * or states if the given node is a leaf */
     public ArrayList<Node> getChildren(int nodeNum) {
         ArrayList<Node> nodesList = new ArrayList();
-        if (nodeNum >= tree.size() || nodeNum < 0) {
-            System.out.println("There is no " + nodeNum + " node in the tree!");
+        if (nodeNum > tree.size() || nodeNum < 0) {
+            //System.out.println("There is no " + nodeNum + " node in the tree!");
             return null;
         } else if (!parentChildrenMap.containsKey(nodeNum)) {
-            System.out.println(nodeNum + " is a leaf node!");
+            //System.out.println(nodeNum + " is a leaf node!");
         } else {
-            System.out.print("The children of " + nodeNum + " is: ");
+            //System.out.print("The children of " + nodeNum + " is: ");
             LinkedList<Integer> ll = parentChildrenMap.get(nodeNum);
             for (int i : ll) {
-                System.out.print(i + " ");
+                //System.out.print(i + " ");
                 nodesList.add(treeNodes[i]);
             }
-            System.out.println();
+            //System.out.println();
         }
         return nodesList;
     }
 
-    /* Prints out a parent of the given node
+    /* Returns and prints out a parent of the given node
      * or states if the given node is a root */
     public Node getParent(int nodeNum) {
-        if (nodeNum >= tree.size() || nodeNum < 0) {
-            System.out.println("There is no " + nodeNum + " node in the tree!");
+        if (nodeNum > tree.size() || nodeNum < 0) {
+            //System.out.println("There is no " + nodeNum + " node in the tree!");
             return null;
         } else if (nodeNum == 0) {
-            System.out.println(nodeNum + " is the root!");
+            //System.out.println(nodeNum + " is the root!");
             return treeNodes[0];
         } else {
-            System.out.print("The parent of " + nodeNum + " is: ");
+            //System.out.print("The parent of " + nodeNum + " is: ");
             int ll = childParentMap.get(nodeNum);
-            System.out.println(ll);
+            //System.out.println(ll);
             return treeNodes[ll];
         }
+    }
+
+    /* Returns a node given its number */
+    public Node getNode(int nodeNum) {
+        return treeNodes[nodeNum];
     }
 
     /* returns the height of the tree */

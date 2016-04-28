@@ -5,80 +5,70 @@ public class Main {
     public static void main(String[] args) {
         //TreeGen tree = new TreeGen(10);
 
+        ArrayList<String> tree1 = new  ArrayList();
+        ArrayList<String> tree2 = new  ArrayList();;
+        ArrayList<String> tree3 = new  ArrayList();;
+        ArrayList<String> tree4 = new  ArrayList();;
 
         try {
-            File file1 = new File("Tree/Tree1.txt");
-            ArrayList<String> demo = getTree(file1, 10);
+            File file1 = new File("Tree1.txt");
+            File file2 = new File("Tree2.txt");
+            File file3 = new File("Tree3.txt");
+            File file4 = new File("Tree4.txt");
+            tree1 = getTree(file1);
+            tree2 = getTree(file2);
+            tree3 = getTree(file3);
+            tree4 = getTree(file4);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // a new TreeGen should be created before each comparison
+        // limitation: data for comparison is built into Node structure
+        TreeGen T1 = new TreeGen(tree1);
+        TreeGen T2 = new TreeGen(tree2);
+        TreeGen T3 = new TreeGen(tree3);
+        TreeGen T4 = new TreeGen(tree4);
 
-        System.out.println("\n---Test of constructor---");
-        ArrayList<String> someTree = new ArrayList();
-        someTree.add("0,1");
-        someTree.add("0,2");
-        someTree.add("0,4");
-        someTree.add("1,5");
-        someTree.add("1,8");
-        someTree.add("4,6");
-        someTree.add("6,7");
+        System.out.print("\nTest T1 and T2 for isomorphism:    ");
+        boolean T1vsT2 = Isomorphism.isomorphism(T1, T2);
+        System.out.println(T1vsT2);
 
-        TreeGen tree = new TreeGen(someTree);
+        T1 = new TreeGen(tree1);
+        System.out.print("\nTest T1 and T3 for isomorphism:    ");
+        boolean T1vsT3 = Isomorphism.isomorphism(T1, T3);
+        System.out.println(T1vsT3);
 
-        System.out.println("\nChild-Parent Map: ");
-        tree.displayChildParent();
-        System.out.println("\nParent-Children Map: ");
-        tree.displayParentChildren();
-        System.out.println("\nLevel-Nodes Map: ");
-        tree.displayLevelNodeMap();
+        T1 = new TreeGen(tree1);
+        System.out.print("\nTest T1 and T4 for isomorphism:    ");
+        boolean T1vsT4 = Isomorphism.isomorphism(T1, T4);
+        System.out.println(T1vsT4);
 
-        System.out.println("\nThe height of the tree is: " + tree.getHeight() + "\n");
+        T2 = new TreeGen(tree2);
+        T3 = new TreeGen(tree3);
+        System.out.print("\nTest T2 and T3 for isomorphism:    ");
+        boolean T2vsT3 = Isomorphism.isomorphism(T2, T3);
+        System.out.println(T2vsT3);
 
-        // if your file has different name, just put it under the root folder and change the name here
-//        File file = new File("URLs.txt");
-//        try {
-//            tree.addUrlToNodes(file);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        T2 = new TreeGen(tree2);
+        T4 = new TreeGen(tree4);
+        System.out.print("\nTest T2 and T4 for isomorphism:    ");
+        boolean T2vsT4 = Isomorphism.isomorphism(T2, T4);
+        System.out.println(T2vsT4);
 
-        System.out.println("\n---Test of getChildren() method---");
-        tree.getChildren(-1);
-        tree.getChildren(0);
-        tree.getChildren(4);
-        tree.getChildren(10);
-
-        System.out.println("\n---Test of getParent() method---");
-        tree.getParent(-1);
-        tree.getParent(0);
-        tree.getParent(1);
-        tree.getParent(4);
-        tree.getParent(10);
-
-        System.out.println("\n---Test of nodeListByLevel() method---");
-        tree.nodeListByLevel(-1);
-        tree.nodeListByLevel(0);
-        tree.nodeListByLevel(1);
-        tree.nodeListByLevel(5);
-
-
-
-
-
-
-
-
+        T3 = new TreeGen(tree3);
+        T4 = new TreeGen(tree4);
+        System.out.print("\nTest T3 and T4 for isomorphism:    ");
+        boolean T3vsT4 = Isomorphism.isomorphism(T3, T4);
+        System.out.println(T3vsT4);
     }
 
     /* read files */
-    public static ArrayList<String> getTree(File file, int n) throws Exception {
+    public static ArrayList<String> getTree(File file) throws Exception {
         ArrayList<String> tree = new ArrayList();
         BufferedReader br = new BufferedReader(new FileReader(file));
-        for (int i = 0; i < n; i ++) {
-            tree.add(br.readLine());
-
-            System.out.println(tree.get(i));
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            tree.add(line);
         }
         br.close();
 
