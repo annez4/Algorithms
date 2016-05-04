@@ -29,41 +29,41 @@ public class DynamicScheduling {
         }
     }
 
-    public static void main(String[] args) {
-        //parameters to change for testing
-        int numOfCores = 2;     //1,2,3,..., 8
-        int matrixSize = 5;
-
-        DynamicScheduling dynamicScheduling = new DynamicScheduling(matrixSize);
-        Thread[] threads = new Thread[numOfCores];
-
-        for (int i=0; i<numOfCores; i++) {
-            threads[i] = new Thread(new DynamicThread(dynamicScheduling.A, dynamicScheduling.B, dynamicScheduling.C, dynamicScheduling.matrixSize));
-        }
-
-        for (Thread thread : threads) {
-            thread.run();
-        }
-
-        for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        System.out.println("Matrix A:");
-        dynamicScheduling.displayA();
-        System.out.println();
-
-        System.out.println("Matrix B:");
-        dynamicScheduling.displayB();
-        System.out.println();
-
-        System.out.println("Matrix C:");
-        dynamicScheduling.displayC();
-        System.out.println();
-
-    }
+    // public static void main(String[] args) {
+    //     //parameters to change for testing
+    //     int numOfCores = 2;     //1,2,3,..., 8
+    //     int matrixSize = 5;
+    //
+    //     DynamicScheduling dynamicScheduling = new DynamicScheduling(matrixSize);
+    //     Thread[] threads = new Thread[numOfCores];
+    //
+    //     for (int i=0; i<numOfCores; i++) {
+    //         threads[i] = new Thread(new DynamicThread(dynamicScheduling.A, dynamicScheduling.B, dynamicScheduling.C, dynamicScheduling.matrixSize));
+    //     }
+    //
+    //     for (Thread thread : threads) {
+    //         thread.run();
+    //     }
+    //
+    //     for (Thread thread : threads) {
+    //         try {
+    //             thread.join();
+    //         } catch (InterruptedException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
+    //
+    //     System.out.println("Matrix A:");
+    //     dynamicScheduling.displayA();
+    //     System.out.println();
+    //
+    //     System.out.println("Matrix B:");
+    //     dynamicScheduling.displayB();
+    //     System.out.println();
+    //
+    //     System.out.println("Matrix C:");
+    //     dynamicScheduling.displayC();
+    //     System.out.println();
+    //
+    // }
 }
