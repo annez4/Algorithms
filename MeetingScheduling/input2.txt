@@ -1,0 +1,9 @@
+F 12 31
+2 420
+Jack Casey
+M 12 31 0900 1700
+done
+Jack Ross
+T 1 4 0900 1700
+done
+done
